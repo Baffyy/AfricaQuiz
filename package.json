@@ -1,0 +1,18 @@
+{
+  "name": "africa-capital-quiz",
+  "version": "1.0.0",
+  "description": "an african capital quiz",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Baffour Gyimah",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "pg": "^8.16.3"
+  }
+}
