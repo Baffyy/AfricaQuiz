@@ -18,10 +18,10 @@ const db = new pg.Client({
 
 db.connect();
 
-var countries= {};
-var score= 0
+var countries= [];
+let score= 0;
 
-db.query("SELECT country FROM african_capitals", (err,res) => {
+db.query("SELECT * FROM african_capitals", (err,res) => {
     if (err) {
         console.err("Cannot display query",err.stack)
     } else{
@@ -29,13 +29,38 @@ db.query("SELECT country FROM african_capitals", (err,res) => {
     };
 });
 
+
 app.get("/", (req,res) => {
-    const africanCountry = Math.floor(Math.random() * countries.length);
-    const foundCountry = countries[africanCountry]; 
+    const foundCountry=  afrique();
     res.render("index.ejs", {country: foundCountry,
         totalScore: score
     })
 })
+
+app.post("/submit", async (req, res) => {
+    const userAnswer = req.body.name.trim();
+    const realId = req.body.id;
+
+    console.log(realId);
+
+    const correctCountry= countries.find((capital) => capital.id == realId)
+
+    console.log(correctCountry);
+    
+    if (correctCountry && userAnswer.toLowerCase() == correctCountry.capital.toLowerCase() ) {
+        score++;
+    } else {
+        score = 0;
+    }
+    
+    res.redirect("/")
+});
+
+function afrique () {
+    const africanCountry = Math.floor(Math.random() * countries.length);
+    const foundCountry = countries[africanCountry]; 
+    return foundCountry;
+};
 
 
 
