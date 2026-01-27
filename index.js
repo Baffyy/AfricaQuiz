@@ -50,7 +50,7 @@ app.post("/submit", async (req, res) => {
     if (correctCountry && userAnswer.toLowerCase() == correctCountry.capital.toLowerCase() ) {
         score++;
     } else {
-        score = 0;
+        score = 0
     }
     
     res.redirect("/")
