@@ -31,6 +31,9 @@ db.query("SELECT * FROM african_capitals", (err,res) => {
 
 app.get("/", (req,res) => {
     const foundCountry=  afrique();
+    if (!foundCountry) {
+        return res.send("No countries available right now. Try later.");
+    }
     res.render("index.ejs", {country: foundCountry,
         totalScore: score
     })
@@ -56,6 +59,7 @@ app.post("/submit", async (req, res) => {
 });
 
 function afrique () {
+    if (!countries.length) return null;
     const africanCountry = Math.floor(Math.random() * countries.length);
     const foundCountry = countries[africanCountry]; 
     return foundCountry;
@@ -64,5 +68,5 @@ function afrique () {
 
 
 app.listen(PORT, () => {
-    console.log("server is running on port ${PORT");
+    console.log(`server is running on port ${PORT}`);
 });
