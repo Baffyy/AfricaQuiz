@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import pg from "pg";
 
 const app = express();
-const port = process.env.PORT || 3000;;
+const PORT = process.env.PORT || 3000;;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -22,7 +22,7 @@ let score= 0;
 
 db.query("SELECT * FROM african_capitals", (err,res) => {
     if (err) {
-        console.err("Cannot display query",err.stack)
+        console.error("Cannot display query",err.stack)
     } else{
         countries = res.rows
     };
@@ -63,6 +63,6 @@ function afrique () {
 
 
 
-app.listen(port, () => {
-    console.log("server is running on port 3000");
+app.listen(PORT, () => {
+    console.log("server is running on port ${PORT");
 });
