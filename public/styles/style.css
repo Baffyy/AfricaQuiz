@@ -114,5 +114,18 @@ body.restart {
     button {
         width: 80px;
     }
+
+    body.restart {
+        animation: moveBackground 5s ease forwards;
+    }
+    
+    @keyframes moveBackground {
+        0% {
+            background-position: center top;
+        }
+        100% {
+            background-position: center center;
+        }
+    }
 }
 
