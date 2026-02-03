@@ -6,7 +6,7 @@
     <title>Africa Capital Quiz!︖</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
-<body>
+<body class="home">
     <form action="/submit" method="POST">
         <div id="main-container">
             <div class="score-count">
@@ -22,7 +22,7 @@
                 <input type="hidden" name="id"  value="<%= country.id %>">
             </div>
 
-            <button type="submit">Let's Go!</button>
+            <button type="submit">Let's Go! <span class="checkmark">✅</span></button>
         </div>
     </form>
 </body>

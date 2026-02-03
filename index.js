@@ -39,6 +39,10 @@ app.get("/", (req,res) => {
     })
 })
 
+app.get("/restart", (req,res) => {
+    res.render("restart.ejs")
+})
+
 app.post("/submit", async (req, res) => {
     const userAnswer = req.body.name.trim();
     const realId = req.body.id;
@@ -51,12 +55,17 @@ app.post("/submit", async (req, res) => {
     
     if (correctCountry && userAnswer.toLowerCase() == correctCountry.capital.toLowerCase() ) {
         score++;
+        res.redirect("/")
     } else {
-        score = 0
+        res.redirect("restart")
     }
-    
-    res.redirect("/")
 });
+
+app.post("/restart", (req, res) => {
+   res.redirect("/");
+   score= 0;
+    
+})
 
 function afrique () {
     if (!countries.length) return null;
