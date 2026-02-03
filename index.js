@@ -35,7 +35,7 @@ app.get("/", (req,res) => {
         return res.send("No countries available right now. Try later.");
     }
     res.render("index.ejs", {country: foundCountry,
-        totalScore: score
+        totalScore: score,
     })
 })
 
@@ -44,7 +44,7 @@ app.get("/restart", (req,res) => {
 })
 
 app.post("/submit", async (req, res) => {
-    const userAnswer = req.body.name.trim();
+    const userAnswer = req.body.name.trim().toLowerCase();
     const realId = req.body.id;
 
     console.log(realId);
@@ -53,17 +53,23 @@ app.post("/submit", async (req, res) => {
 
     console.log(correctCountry);
     
-    if (correctCountry && userAnswer.toLowerCase() == correctCountry.capital.toLowerCase() ) {
+    if ( correctCountry && userAnswer === correctCountry.capital.toLowerCase()) {
         score++;
-        res.redirect("/")
+
+        const foundCountry = afrique();
+
+        res.render("index.ejs", {
+            country: foundCountry,
+            totalScore: score,
+        });
     } else {
-        res.redirect("restart")
+        res.render("restart.ejs")
     }
 });
 
 app.post("/restart", (req, res) => {
-   res.redirect("/");
-   score= 0;
+    score= 0;
+    res.redirect("/");
     
 })
 

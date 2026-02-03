@@ -42,13 +42,15 @@ body.home {
 }
 
 .checkmark {
-    display: none;
+    margin-left: 8px;
 }
 
 button {
     width: 100px;     
     padding: 10px;
-    margin: 0 auto;     
+    margin: 0 auto; 
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 /* Restart Page */
@@ -56,6 +58,7 @@ body.restart {
     background: url('/images/peakpx.jpg') no-repeat center/cover;
     min-height: 100vh;
     animation: moveBackground 3s ease forwards;
+    position: relative;
 }
 
 @keyframes moveBackground {
@@ -71,20 +74,26 @@ body.restart {
     font-family: "Press Start 2P", system-ui;
 }
 
-.holder h1 {
-    font-size: 16px;
-    color: lightgreen;
-    
-}
-
 .btn {
+    background: lightgreen;
+    color: black;
     width: 120px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 10px;
     border-radius: 10px;
+    cursor: pointer;
     opacity: 0;             
     animation: fadeInButton 1s ease forwards;
     animation-delay: 3s;  
 
+}
+
+.btn:hover {
+    background-color: brown;
+    color: white;
 }
 
 @keyframes fadeInButton {
